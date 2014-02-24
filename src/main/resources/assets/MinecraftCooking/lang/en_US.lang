@@ -1,0 +1,19 @@
+# Master language file
+
+# Fluids
+milk=Milk
+
+# Mashines
+grindstone=Grindstone
+milker=Milker
+cookingtable=Food preparation table
+
+# Items
+
+# GUI
+gui.grindstone.title=Grindstone
+gui.generic.inventory=Inventory
+gui.cookingtable.title=Food preparation table
+
+# Inventories
+inventory.grindstone.name=Grindstone
