@@ -11,7 +11,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-@SuppressWarnings("UnusedDeclaration")
+@SuppressWarnings("ALL")
 public class GrindstoneTileBuildCraft extends GrindstoneTile implements IPowerReceptor {
 
     private PowerHandler powerProvider;

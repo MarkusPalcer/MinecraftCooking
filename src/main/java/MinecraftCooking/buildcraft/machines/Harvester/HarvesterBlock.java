@@ -9,8 +9,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class HarvesterBlock extends Block {
-    private static String name = "harvester";
+    private static final String name = "harvester";
 
     public static HarvesterBlock Create() {
        HarvesterBlock result = new HarvesterBlock(Material.rock);
@@ -22,7 +23,7 @@ public class HarvesterBlock extends Block {
        return result;
     }
 
-    protected HarvesterBlock(Material par2Material) {
+    private HarvesterBlock(Material par2Material) {
         super(par2Material);
         setHardness(2.5F);
         setBlockName("harvester");

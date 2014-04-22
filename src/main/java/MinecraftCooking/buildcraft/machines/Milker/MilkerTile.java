@@ -17,9 +17,10 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
+@SuppressWarnings("ALL")
 public class MilkerTile extends TileEntity implements IPowerReceptor {
 
-	private PowerHandler powerProvider;
+	private final PowerHandler powerProvider;
 
 	private int storedMilk = 0;
 

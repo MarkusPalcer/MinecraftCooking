@@ -23,4 +23,5 @@ gui.cookingtable.title=Food preparation table
 # Inventories
 inventory.grindstone.name=Grindstone
 
+# Inventory tabs
 itemGroup.MinecraftCooking=Minecraft cooking

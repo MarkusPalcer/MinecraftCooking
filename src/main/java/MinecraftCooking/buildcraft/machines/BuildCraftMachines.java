@@ -12,7 +12,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class BuildCraftMachines {
-    public static Block Milker;
+    private static Block Milker;
+
+	public static final int MAX_ENERGY = 15000;
 
     public static void Init() {
       GrindstoneBlock.entityClass = GrindstoneTileBuildCraft.class;
