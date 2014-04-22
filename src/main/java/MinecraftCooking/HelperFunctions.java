@@ -14,7 +14,8 @@ public class HelperFunctions {
         int removed = 0;
 
         for (IRecipe recipe : recipes) {
-            if (recipe.getRecipeOutput().getItem() == outcome) {
+          ItemStack output = recipe.getRecipeOutput();
+          if (output != null && output.getItem() == outcome) {
                 recipes.remove(recipe);
                 removed++;
             }
@@ -28,9 +29,10 @@ public class HelperFunctions {
         List<IRecipe> result = new ArrayList<IRecipe>();
 
         for (IRecipe recipe : recipes) {
-            if (recipe.getRecipeOutput().getItem() == outcome) {
-                result.add(recipe);
-            }
+          ItemStack output = recipe.getRecipeOutput();
+          if (output != null && output.getItem() == outcome) {
+              result.add(recipe);
+          }
         }
 
         return result;

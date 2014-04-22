@@ -19,6 +19,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.config.Configuration;
 
+import java.lang.reflect.InvocationTargetException;
+
 @Mod(modid = "MinecraftCooking", name = "MinecraftCooking", version = "1.0.0.0", dependencies = "required-after:Forge@[9.10.0.800,)")
 public class BaseClass {
 
@@ -47,12 +49,7 @@ public class BaseClass {
   public void init(FMLInitializationEvent event) {
     RegisterStringLocalizations();
 
-    try {
-      Class.forName("buildcraft.BuildCraftCore");
-      buildCraftPresent = true;
-    } catch (ClassNotFoundException e) {
-      buildCraftPresent = false;
-    }
+    InitializeIntegration("MinecraftCooking.buildcraft.BaseClass");
 
     NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
@@ -63,6 +60,19 @@ public class BaseClass {
     config.save();
 
     Proxy.InitRendering();
+  }
+
+  private void InitializeIntegration(String className) {
+    try {
+      Class.forName(className).getMethod("Init").invoke(null);
+    } catch (ClassNotFoundException e) {
+    } catch (InvocationTargetException e) {
+      e.printStackTrace();
+    } catch (NoSuchMethodException e) {
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    }
   }
 
   @SubscribeEvent

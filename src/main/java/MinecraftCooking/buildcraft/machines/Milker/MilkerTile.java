@@ -1,4 +1,4 @@
-package MinecraftCooking.machines.Milker;
+package MinecraftCooking.buildcraft.machines.Milker;
 
 import MinecraftCooking.fluids.Fluids;
 import MinecraftCooking.machines.Machines;

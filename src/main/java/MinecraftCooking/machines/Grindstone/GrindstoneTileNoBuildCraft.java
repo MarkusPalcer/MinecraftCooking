@@ -1,6 +1,5 @@
 package MinecraftCooking.machines.Grindstone;
 
-import buildcraft.core.utils.Utils;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,7 +28,7 @@ public class GrindstoneTileNoBuildCraft extends GrindstoneTile implements ISided
 
     @Override
     public void read(NBTTagCompound data) {
-        NBTTagList items = data.getTagList("Items", Utils.NBTTag_Types.NBTTagCompound.ordinal());
+        NBTTagList items = data.getTagList("Items", 10);
         this.itemStacks = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < items.tagCount(); ++i)

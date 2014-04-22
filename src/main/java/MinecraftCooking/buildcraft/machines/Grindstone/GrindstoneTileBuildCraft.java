@@ -1,5 +1,6 @@
-package MinecraftCooking.machines.Grindstone;
+package MinecraftCooking.buildcraft.machines.Grindstone;
 
+import MinecraftCooking.machines.Grindstone.GrindstoneTile;
 import MinecraftCooking.machines.Machines;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;

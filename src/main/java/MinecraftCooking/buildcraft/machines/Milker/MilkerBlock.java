@@ -1,4 +1,4 @@
-package MinecraftCooking.machines.Milker;
+package MinecraftCooking.buildcraft.machines.Milker;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

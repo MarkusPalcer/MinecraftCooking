@@ -19,15 +19,5 @@ public class Machines {
   public static void Init() {
     Grindstone = GrindstoneBlock.Create();
     CookingTable = CookingTableBlock.Create();
-
-    if (BaseClass.instance.hasBuildCraft()) {
-      try {
-        Class.forName("cooking.machinesOld.BuildCraftMachines").getMethod("Init").invoke(null);
-      } catch (ClassNotFoundException ignored) {
-      } catch (NoSuchMethodException ignored) {
-      } catch (InvocationTargetException ignored) {
-      } catch (IllegalAccessException ignored) {
-      }
-    }
   }
 }

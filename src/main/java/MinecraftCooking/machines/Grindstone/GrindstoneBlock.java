@@ -22,7 +22,7 @@ public class GrindstoneBlock extends BlockContainer {
 
 	public static ProcessingManager recipes = new ProcessingManager();
 
-    protected static Class entityClass;
+  public static Class entityClass;
 
 	public static GrindstoneBlock Create() {
 		GrindstoneBlock retVal = new GrindstoneBlock();
@@ -34,15 +34,14 @@ public class GrindstoneBlock extends BlockContainer {
 
 		AddRecipes();
 
-        try {
-            entityClass = Class.forName("cooking.machinesOld.Grindstone.GrindstoneTileBuildCraft");
-        } catch (ClassNotFoundException e) {
-            entityClass = GrindstoneTileNoBuildCraft.class;
-        }
+    if (entityClass == null)
+    {
+        entityClass = GrindstoneTileNoBuildCraft.class;
+    }
 
-        GameRegistry.registerTileEntity(entityClass, BaseClass.prefix + name);
+    GameRegistry.registerTileEntity(entityClass, BaseClass.prefix + name);
 
-        return retVal;
+    return retVal;
 	}
 
     private static void AddRecipes() {

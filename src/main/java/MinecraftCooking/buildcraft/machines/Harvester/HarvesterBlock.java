@@ -1,4 +1,4 @@
-package MinecraftCooking.machines.Harvester;
+package MinecraftCooking.buildcraft.machines.Harvester;
 
 import buildcraft.BuildCraftCore;
 import MinecraftCooking.BaseClass;
