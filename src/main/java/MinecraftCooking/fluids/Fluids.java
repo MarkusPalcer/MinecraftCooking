@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class Fluids {
-  public static Fluid Milk;
+  private static Fluid Milk;
 
   public static void Init() {
     Milk = RegisterFluid(new Milk());

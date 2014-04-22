@@ -1,5 +1,6 @@
 package MinecraftCooking.gui;
 
+import MinecraftCooking.BaseClass;
 import MinecraftCooking.machines.Grindstone.GrindstoneTile;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -7,10 +8,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-public class GrindstoneGui extends GuiContainer {
-  private static final ResourceLocation background = new ResourceLocation("cooking", "textures/gui/grindstone.png");
-  private GrindstoneTile tile;
-  public static final String title = "gui.grindstone.title";
+class GrindstoneGui extends GuiContainer {
+  private static final String title = "gui.grindstone.title";
+  private static final ResourceLocation background = new ResourceLocation(BaseClass.prefix + "textures/gui/grindstone.png");
+  private final GrindstoneTile tile;
 
   public GrindstoneGui(InventoryPlayer par1InventoryPlayer, GrindstoneTile tile) {
     super(new GrindstoneContainer(par1InventoryPlayer, tile));
@@ -39,10 +40,5 @@ public class GrindstoneGui extends GuiContainer {
 
     i1 = this.tile.getCookProgressScaled(24);
     this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
-  }
-
-  @Override
-  public void onGuiClosed() {
-    super.onGuiClosed();
   }
 }

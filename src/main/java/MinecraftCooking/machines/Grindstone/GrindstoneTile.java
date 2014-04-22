@@ -16,12 +16,12 @@ public abstract class GrindstoneTile extends SynchronizedTile implements ISidedI
   private static final int[] slots_top = new int[]{0};
   private static final int[] slots_bottom = new int[]{1};
   private static final int[] slots_sides = new int[]{0, 1};
-  public static final String name = "tile.grindstone.name";
-  public int processingTime;
-  public ArrayList<Integer> openedByPlayers = new ArrayList<Integer>();
-  public int processingTimeNeeded;
-  protected ItemStack[] itemStacks = new ItemStack[2];
-  protected ProcessingManager.ProcessingRecipe currentRecipe = null;
+  private static final String name = "tile.grindstone.name";
+  final ArrayList<Integer> openedByPlayers = new ArrayList<Integer>();
+  int processingTime;
+  int processingTimeNeeded;
+  ItemStack[] itemStacks = new ItemStack[2];
+  ProcessingManager.ProcessingRecipe currentRecipe = null;
 
   /**
    * Returns the number of slots in the inventory.
@@ -86,6 +86,8 @@ public abstract class GrindstoneTile extends SynchronizedTile implements ISidedI
     if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit()) {
       par2ItemStack.stackSize = this.getInventoryStackLimit();
     }
+
+    this.refreshCurrentRecipe();
   }
 
   @Override
@@ -109,6 +111,14 @@ public abstract class GrindstoneTile extends SynchronizedTile implements ISidedI
     return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && par1EntityPlayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
   }
 
+  @Override
+  public void openInventory() {
+  }
+
+  @Override
+  public void closeInventory() {
+  }
+
   /**
    * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
    */
@@ -124,12 +134,6 @@ public abstract class GrindstoneTile extends SynchronizedTile implements ISidedI
       return this.processingTime * par1 / this.processingTimeNeeded;
     }
   }
-
-  @Override
-  public void openInventory() {  }
-
-  @Override
-  public void closeInventory() {  }
 
   public void open(int playerId) {
     if (!this.openedByPlayers.contains(playerId))
@@ -148,16 +152,6 @@ public abstract class GrindstoneTile extends SynchronizedTile implements ISidedI
   public void updateEntity() {
     if (this.worldObj.isRemote) {
       return;
-    }
-
-    if (this.currentRecipe == null) {
-      ProcessingRecipe oldRecipe = this.currentRecipe;
-      this.currentRecipe = this.getMatchingRecipe();
-
-      if (oldRecipe != this.currentRecipe) {
-        this.processingTimeNeeded = this.currentRecipe.processingTime;
-        this.sendTileUpdate();
-      }
     }
 
     if (this.currentRecipe != null) {
@@ -184,7 +178,7 @@ public abstract class GrindstoneTile extends SynchronizedTile implements ISidedI
     }
   }
 
-  public void smeltItem() {
+  void smeltItem() {
     ItemStack itemstack = this.currentRecipe.output;
     if (this.itemStacks[1] == null) {
       this.itemStacks[1] = itemstack.copy();
@@ -196,12 +190,22 @@ public abstract class GrindstoneTile extends SynchronizedTile implements ISidedI
     if (itemStacks[0].stackSize == 0) {
       itemStacks[0] = null;
     }
+
+    this.refreshCurrentRecipe();
   }
 
-  public void openChest() {
-  }
+  protected void refreshCurrentRecipe() {
+    ProcessingRecipe newRecipe = this.getMatchingRecipe();
 
-  public void closeChest() {
+    if (newRecipe != this.currentRecipe) {
+      this.currentRecipe = this.getMatchingRecipe();
+      if (this.currentRecipe != null) {
+        this.processingTimeNeeded = this.currentRecipe.processingTime;
+      } else {
+        this.processingTimeNeeded = 0;
+      }
+      this.sendTileUpdate();
+    }
   }
 
   /**
