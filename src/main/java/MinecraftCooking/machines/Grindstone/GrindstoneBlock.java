@@ -17,17 +17,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 public class GrindstoneBlock extends BlockContainer {
 
   public static final ProcessingManager recipes = new ProcessingManager();
   private static final String name = "grindstone";
   private static Class<? extends GrindstoneTile> entityClass;
+  private static GrindstoneRenderer renderer;
 
   protected GrindstoneBlock() {
     super(Material.rock);
     setHardness(3.5F);
-    setBlockName("grindstone");
+    setBlockName(name);
     setCreativeTab(BaseClass.tab);
   }
 
@@ -47,7 +49,10 @@ public class GrindstoneBlock extends BlockContainer {
     }
 
     GameRegistry.registerTileEntity(entityClass, BaseClass.prefix + name);
-    ClientRegistry.bindTileEntitySpecialRenderer(entityClass, new GrindstoneRenderer());
+
+    renderer = new GrindstoneRenderer();
+    ClientRegistry.bindTileEntitySpecialRenderer(entityClass, renderer);
+    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(retVal), renderer);
 
     return retVal;
   }

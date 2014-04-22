@@ -4,11 +4,16 @@
 milk=Milk
 
 # Mashines
-grindstone=Grindstone
+tile.grindstone.name=Grindstone
 milker=Milker
-cookingtable=Food preparation table
+tile.cookingtable.name=Food preparation table
 
 # Items
+item.dough.name=Dough
+item.doughpiece.name=Piece of dough
+item.breadroll.name=Breadroll
+item.fishroll.name=Fishroll
+item.flour.name=Flour
 
 # GUI
 gui.grindstone.title=Grindstone
@@ -17,3 +22,5 @@ gui.cookingtable.title=Food preparation table
 
 # Inventories
 inventory.grindstone.name=Grindstone
+
+itemGroup.MinecraftCooking=Minecraft cooking
