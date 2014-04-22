@@ -40,12 +40,9 @@ public class CookingTableBlock extends Block {
   }
 
   @SideOnly(Side.CLIENT)
-  /**
-   * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-   */
   @Override
-  public IIcon getIcon(int par1, int par2) {
-    return par1 == 1 ? this.iconTop : (par1 == 0 ? Blocks.planks.getBlockTextureFromSide(par1) : (par1 != 2 && par1 != 4 ? this.blockIcon : this.iconFront));
+  public IIcon getIcon(int side, int metadata) {
+    return side == 1 ? this.iconTop : (side == 0 ? Blocks.planks.getBlockTextureFromSide(side) : (side != 2 && side != 4 ? this.blockIcon : this.iconFront));
   }
 
   @Override

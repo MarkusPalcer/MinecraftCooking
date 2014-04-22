@@ -23,16 +23,19 @@ import java.util.logging.Logger;
 
 @Mod(modid = "MinecraftCooking", name = "MinecraftCooking", version = "1.0.0.0", dependencies = "required-after:Forge@[10.12.0.1024,)")
 public class BaseClass {
-
   public static final String prefix = "MinecraftCooking:";
+
   public static final CreativeTabs tab = new CreativeTabs("MinecraftCooking") {
     public Item getTabIconItem() {
       return Items.Flour;
     }
   };
+
   public static final Logger logger = Logger.getLogger("MinecraftCooking");
+
   @Mod.Instance("MinecraftCooking")
   public static BaseClass instance;
+
   public static Configuration config;
 
   @Mod.EventHandler

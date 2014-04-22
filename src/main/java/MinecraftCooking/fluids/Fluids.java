@@ -1,5 +1,6 @@
 package MinecraftCooking.fluids;
 
+import MinecraftCooking.BaseClass;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent.Pre;
@@ -9,12 +10,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class Fluids {
-  private static Fluid Milk;
+  private static Fluid milk;
 
   public static void Init() {
-    Milk = RegisterFluid(new Milk());
+    milk = RegisterFluid(new Milk());
     FluidContainerRegistry.registerFluidContainer(new FluidContainerRegistry.FluidContainerData(
-        new FluidStack(Milk, FluidContainerRegistry.BUCKET_VOLUME),
+        new FluidStack(milk, FluidContainerRegistry.BUCKET_VOLUME),
         new ItemStack(Items.milk_bucket),
         new ItemStack(Items.bucket),
         false));
@@ -26,6 +27,6 @@ public class Fluids {
   }
 
   public static void InitTextures(Pre event) {
-    Milk.setIcons(event.map.registerIcon("cooking:milk"));
+    milk.setIcons(event.map.registerIcon(BaseClass.prefix + Milk.name));
   }
 }
